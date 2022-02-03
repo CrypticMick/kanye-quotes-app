@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const useRandomQuote = () => {
+const useRandomQuote = (i) => {
   const [quote, setQuote] = useState("");
 
   useEffect(() => {
@@ -15,7 +15,7 @@ const useRandomQuote = () => {
         });
 
     fetchKanyeQuote();
-  }, []);
+  }, [i]);
 
   return quote;
 };

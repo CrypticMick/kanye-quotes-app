@@ -13,8 +13,11 @@ import useRandomQuote from "./useRandomQuote";
 export default function App() {
   const backgroundImage = { uri: "https://wallpapercave.com/wp/wp9837865.png" };
 
+  // Iterator to trigger custom hook
+  const [i, setI] = useState(0);
+
   // Custom Hook
-  const kanyeQuote = useRandomQuote();
+  const kanyeQuote = useRandomQuote(i);
 
   return (
     <View style={styles.container}>
@@ -32,7 +35,7 @@ export default function App() {
         >
           <Text style={styles.quoteText}>{kanyeQuote}</Text>
         </View>
-        <TouchableOpacity style={styles.button} onPress={() => {}}>
+        <TouchableOpacity style={styles.button} onPress={() => setI(i + 1)}>
           <Text style={styles.buttonText}>More Kanye</Text>
         </TouchableOpacity>
 
