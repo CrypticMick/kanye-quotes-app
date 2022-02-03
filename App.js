@@ -1,5 +1,5 @@
 import { StatusBar } from "expo-status-bar";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   StyleSheet,
   Text,
@@ -11,12 +11,14 @@ import {
 export default function App() {
   const backgroundImage = { uri: "https://wallpapercave.com/wp/wp9837865.png" };
 
+  const [quote, setQuote] = useState("");
+
   useEffect(() => {
     const fetchKanyeQuote = async () =>
       await fetch("https://api.kanye.rest/")
         .then((res) => res.json())
         .then((data) => {
-          console.log(data);
+          setQuote(data.quote);
         })
         .catch((error) => {
           console.error(error);
@@ -39,9 +41,7 @@ export default function App() {
             width: "100%",
           }}
         >
-          <Text style={styles.quoteText}>
-            "I Love You Like Kanye Loves Kanye"
-          </Text>
+          <Text style={styles.quoteText}>{quote}</Text>
         </View>
         <TouchableOpacity style={styles.button} onPress={() => {}}>
           <Text style={styles.buttonText}>More Kanye</Text>
