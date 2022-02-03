@@ -8,24 +8,13 @@ import {
   TouchableOpacity,
 } from "react-native";
 
+import useRandomQuote from "./useRandomQuote";
+
 export default function App() {
   const backgroundImage = { uri: "https://wallpapercave.com/wp/wp9837865.png" };
 
-  const [quote, setQuote] = useState("");
-
-  useEffect(() => {
-    const fetchKanyeQuote = async () =>
-      await fetch("https://api.kanye.rest/")
-        .then((res) => res.json())
-        .then((data) => {
-          setQuote(data.quote);
-        })
-        .catch((error) => {
-          console.error(error);
-        });
-
-    fetchKanyeQuote();
-  }, []);
+  // Custom Hook
+  const kanyeQuote = useRandomQuote();
 
   return (
     <View style={styles.container}>
@@ -41,7 +30,7 @@ export default function App() {
             width: "100%",
           }}
         >
-          <Text style={styles.quoteText}>{quote}</Text>
+          <Text style={styles.quoteText}>{kanyeQuote}</Text>
         </View>
         <TouchableOpacity style={styles.button} onPress={() => {}}>
           <Text style={styles.buttonText}>More Kanye</Text>
